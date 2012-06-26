@@ -412,6 +412,192 @@ glEnd();
 
 glPopMatrix();
 }
+void drawBebek() {
+
+	GLfloat xS = 20;
+	GLfloat yS = 12;
+	GLfloat zS = 50;
+	//kepala
+	glColor3f(0.88, 0.88, 0.1);
+	//glPushMatrix();
+	glPushMatrix();
+
+	glTranslatef(xS + 1, yS + 3, zS);
+	glScalef(3 * 4, 3 * 4, 3.5 * 4);
+
+	glutSolidSphere(0.5, 20, 30);
+	glPopMatrix();
+
+	glColor3f(0.8, 0.3, 0.4);
+	//glPushMatrix();
+
+	glPushMatrix();
+	glTranslatef(xS + 1, yS + 6, zS);
+	glScalef(3 * 4, 3 * 4, 0.5 * 4);
+
+	glutSolidSphere(0.5, 20, 30);
+	glPopMatrix();
+
+	GLfloat x = 0.6 - 50;
+	GLfloat y = 2 + 12;
+	GLfloat z = 1.4 + 24;
+
+	glColor3f(0.7, 0.6, 0.4);
+	glPushMatrix();
+	glRotatef(95, 0, 1, 0);
+	glTranslatef(x - 4.4, y + 2, z - 4.6);
+	glScalef(1.5 * 4, 1.5 * 4, 1.5 * 4);
+
+	glutSolidSphere(0.3, 20, 30);
+
+	glPopMatrix();
+
+	glColor3f(0.0, 0.0, 0.0);
+	glPushMatrix();
+	glRotatef(95, 0, 1, 0);
+	glTranslatef(x - 4.7, y + 2.1, z - 3.4);
+	glScalef(1.5 * 3, 1.5 * 3, 1.5 * 3);
+	glutSolidSphere(0.18, 20, 30);
+
+	glPopMatrix();
+
+	glPushMatrix();
+	glColor3f(0.7, 0.6, 0.4);
+	glRotatef(83, 0, 1, 0);
+	glTranslatef(x + 4.9, y + 2.1, z + 5.8);
+	glScalef(1.5 * 4, 1.5 * 4, 1.5 * 4);
+	glutSolidSphere(0.3, 20, 30);
+
+	glPopMatrix();
+
+	glPushMatrix();
+	glColor3f(0.0, 0.0, 0.0);
+	glRotatef(83, 0, 1, 0);
+	glTranslatef(x + 4.9, y + 2.1, z + 6.65);
+	glScalef(1.5 * 4, 1.5 * 4, 1.5 * 4);
+	glutSolidSphere(0.18, 20, 30);
+
+	glPopMatrix();
+
+	glColor3f(0.88, 0.88, 0.3);
+
+	//mulut
+
+
+	glPushMatrix();
+
+	glTranslatef(xS + 8, yS + 2, zS);
+	glRotatef(180, 0, 0, 1);
+	glScalef(4 * 3, 0.6 * 3, 2.5 * 3);
+
+	glutSolidSphere(0.5, 20, 30);
+	glPopMatrix();
+	//
+
+	glColor3f(0.88, 0.2, 0.5);
+
+	glPushMatrix();
+
+	glTranslatef(xS + 1, yS - 3, zS);
+	glScalef(3 * 4, 3 * 4, 3.5 * 4);
+	glRotatef(90, 1, 0, 0);
+
+	glutSolidTorus(0.2, 0.3, 20, 20);
+
+	//badan agak atas
+	glPopMatrix();
+
+	glColor3f(0.88, 0.88, 0.1);
+
+	glPushMatrix();
+	glTranslatef(xS + 1, yS - 6, zS - 0.4);
+	glScalef(3 * 4, 3 * 4, 3.5 * 4);
+
+	glutSolidSphere(0.5, 20, 30);
+	glPopMatrix();
+
+	//badan utama
+	glPushMatrix();
+	glColor3f(0.88, 0.88, 0.1);
+	glTranslatef(xS - 7, yS - 10, zS - 0.3);
+	glScalef(5 * 4, 4 * 4, 4 * 4);
+
+	glutSolidSphere(0.5, 20, 30);
+	glPopMatrix();
+
+	//badan depan bawah
+	glPushMatrix();
+	glColor3f(0.88, 0.88, 0.1);
+	glTranslatef(xS, yS - 8, zS - 0.2);
+	glScalef(3 * 4, 3 * 4, 3.5 * 4);
+
+	glutSolidSphere(0.5, 20, 30);
+	glPopMatrix();
+	//
+	int sudutSayap = 80;
+	//sayap
+	for (int i = 0; i < 3; i++) {
+		//kanan
+		glPushMatrix();
+		glTranslatef(xS - 6, yS - 5 - i, zS + 7);
+		glRotatef(sudutSayap, 1, 0, 0);
+		glRotatef(-15 + (i * 8), 0, 1, 0);
+		glRotatef(-8.5, 0, 0, 1);
+		glScalef(4 * 4.5 - i, 0.6 * 3, 2.5 * 3 - 1);
+
+		glutSolidSphere(0.5, 20, 30);
+		glPopMatrix();
+		//kiri
+		glPushMatrix();
+		glTranslatef(xS - 6, yS - 5 - i, zS - 8.2);
+		glRotatef(sudutSayap + 15, 1, 0, 0);
+		glRotatef(-15 + (i * 8), 0, 1, 0);
+		glRotatef(10.5, 0, 0, 1);
+		glScalef(4 * 4.5 - i, 0.6 * 3, 2.5 * 3 - 1);
+
+		glutSolidSphere(0.5, 20, 30);
+		glPopMatrix();
+
+	}
+
+	//buntut
+	int sudut = 145;
+	for (int i = 0; i < 4; i++) {
+		glPushMatrix();
+
+		glTranslatef(xS - 12.5 + i, yS - 5 - i, zS);
+		glRotatef(sudut, 0, 0, 1);
+		glScalef(4 * 6.5, 0.6 * 6, (2.5 * 4) - i);
+
+		glutSolidSphere(0.5, 20, 30);
+		glPopMatrix();
+		sudut += 10;
+	}
+
+	//glutSolidCone(2,20,30,40);
+	/*
+	 glScalef(0.5, 0.5, 0.5);
+	 if (kualitasGambar > DRAFT) {
+	 glutSolidCube(3);
+
+	 } else {
+	 glutWireCube(3);
+
+	 }
+
+	 glTranslatef(-4.8, -0.1, 0.0);
+	 */
+	/*
+	 glTranslatef(4.6, 0.0, 0.0);
+	 if (kualitasGambar > DRAFT)
+	 glutSolidCube(1);
+	 else
+	 glutWireCube(1);
+	 glPopMatrix();
+	 */
+
+	glPopMatrix();
+}
 void rumah(){
 
 //tembok
@@ -505,6 +691,10 @@ void pohon(){
 
 
 
+
+
+
+
 void display(void) {
 	glClearStencil(0); //clear the stencil buffer
 	glClearDepth(1.0f);
@@ -512,7 +702,40 @@ void display(void) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT); //clear the buffers
 	glLoadIdentity();
 	gluLookAt(camera_x, camera_y, camera_z, posisi_x, posisi_y, posisi_z, 0.0, 1.0, 0);
+    
+	int k;
+	for (k=0; k<17; k++){
+	glPushMatrix();	
+	glTranslatef(313+(10*k), 0, 230);
+	glScalef(0.1, 1.2, 0.1);
+	glutSolidSphere(10, 40, 20);	
+	glPopMatrix();
+
+	glPushMatrix();	
+	glTranslatef(313+(10*k), -1, 230);
+	glScalef(10, 17, 4);
+	glutSolidCube(1);	
+	glPopMatrix();
+
 	
+	}
+
+	int l;
+	for (l=0; l<12; l++){
+	glPushMatrix();	
+	glTranslatef(260, 0, 235+(10*l));
+	glScalef(0.1, 1.2, 0.1);
+	glutSolidSphere(10, 40, 20);	
+	glPopMatrix();
+
+	glPushMatrix();	
+	glTranslatef(260, -1, 235+(10*l));
+	glScalef(4, 17, 10);
+	glutSolidCube(1);	
+	glPopMatrix();
+
+	
+	}
 	//jalan
 	glColor3f(0.0f, 0.0f, 0.0f);
 	glPushMatrix();
@@ -595,6 +818,14 @@ void display(void) {
 
 	//<<<<<<<<<<<<<<<<<<<< end pohon >>>>>>>>>>>>>>>>>>>>>>>
 	
+	//hotel
+	glPushMatrix();
+	glTranslatef(400,200, 0);	
+	glScalef(50, 150, 50);
+	glRotatef(45, 0, 1, 0);
+	rumah();
+	glPopMatrix();
+
 	//rumah warga
 	int i;
 	for ( i=0;i<5;i++){	
@@ -615,8 +846,28 @@ void display(void) {
 	rumah();
 	glPopMatrix();
 	}
-		
+
 	
+
+
+	//bebek
+	glPushMatrix();
+	glColor3f(1, 0, 0);
+	glTranslatef(0, 0, 0);
+	glScalef(0.5, 0.5, 0.5);
+	glRotatef(-30, 0, 1, 0);
+	drawBebek();
+	glPopMatrix();
+
+	glPushMatrix();
+	glColor3f(1, 0, 0);
+	glTranslatef(50, 0, 0);
+	glScalef(0.5, 0.5, 0.5);
+	glRotatef(-30, 0, 1, 0);
+	drawBebek();
+	glPopMatrix();
+
+
 	
 	glPushMatrix();	
 	//glBindTexture(GL_TEXTURE_3D, texture[0]);
