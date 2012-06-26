@@ -27,12 +27,12 @@ GLuint texture[2];
 float lastx, lasty;
 GLint stencilBits;
 
-static int camera_z = 150;
-static int camera_x = 0;
-static int camera_y = 50;
-static int posisi_z = 0;
-static int posisi_x = 0;
-static int posisi_y = 50;
+static int camera_z = 400;
+static int camera_x = 400;
+static int camera_y = 150;
+static int posisi_z = 50;
+static int posisi_x = 200;
+static int posisi_y = 150;
 float rot = 0;
 int posMobil = 420;
 int posBebek = 	160;
@@ -659,7 +659,7 @@ void pohon(){
 	glColor3f(0.8, 0.5, 0.2);
 	//<<<<<<<<<<<<<<<<<<<< Batang >>>>>>>>>>>>>>>>>>>>>>>
 	glPushMatrix();
-	glScalef(0.2, 4, 0.2);
+	glScalef(0.2, 2, 0.2);
 	glutSolidSphere(1.0, 20, 16);
 	glPopMatrix();
 	//<<<<<<<<<<<<<<<<<<<< end Batang >>>>>>>>>>>>>>>>>>>>>>>
@@ -821,7 +821,111 @@ glPushMatrix();
 	glutSolidTorus(2,3,40,20);
 	glPopMatrix();
 }
+void kacahotel()
+{
+	//kaca	
+	int l = 0;
+	int m = 0;
+	for (m=0; m<8; m++){
+	for (l=0; l<5; l++){
+	glColor3f(1,0,0);
+	glPushMatrix();
+	glTranslatef((-0.8+(l*0.4)),(-0.58+(0.2*m)),1.01);
+	glScalef(0.2,0.1,0.001);
+	glutSolidCube(1);
+	glPopMatrix();
 
+	glColor3f(0,1,0);
+	glPushMatrix();
+	glTranslatef((-0.8+(l*0.4)),(-0.58+(0.2*m)),1);
+	glScalef(0.22,0.12,0.001);
+	glutSolidCube(1);
+	glPopMatrix();
+	
+	//balkon
+	glColor3f(0,0,1);
+	glPushMatrix();
+	glTranslatef((-0.8+(l*0.4)),(-0.62+(0.2*m)),1);
+	glScalef(0.22,0.02,0.15);
+	glutSolidCube(1);
+	glPopMatrix();
+	}}
+}
+void hotel(){
+	//bangunan hotel
+	glColor3f(0.4, 0.0, 0.0);
+	glPushMatrix();
+	glutSolidCube(2);
+	glPopMatrix();
+
+	
+	//atap
+	glColor3f(0.0, 0.0, 0.6);
+	glPushMatrix();
+	glTranslatef(0,-0.7,1.3);
+	glScalef(1,0.02,0.5);
+	glutSolidCube(1);
+	glPopMatrix();
+	
+	//tiang
+	glPushMatrix();
+	glTranslatef(0.0,-0.85,1.5);
+	glScalef(0.05,0.28,0.05);
+	glutSolidCube(1);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(0.47,-0.85,1.5);
+	glScalef(0.05,0.28,0.05);
+	glutSolidCube(1);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(-0.47,-0.85,1.5);
+	glScalef(0.05,0.28,0.05);
+	glutSolidCube(1);
+	glPopMatrix();
+
+	//pintu masuk
+	glColor3f(0,1,0);
+	glPushMatrix();
+	glTranslatef(0,-0.83,1);
+	glScalef(0.8,0.24,0.001);
+	glutSolidCube(1);
+	glPopMatrix();
+
+	//jalan depan
+	glColor3f(0.0, 0.0, 0.0);
+	glPushMatrix();
+	glTranslatef(-0.5,-0.93,1.3);
+	glScalef(3.3,0.001,0.4);
+	glutSolidCube(1);
+	glPopMatrix();
+
+
+	//kaca		
+	glPushMatrix();
+	kacahotel();
+	glPopMatrix();
+
+	glPushMatrix();
+	glRotatef(90,0,1,0);
+	kacahotel();
+	glPopMatrix();
+
+	glPushMatrix();
+	glRotatef(180,0,1,0);
+	kacahotel();
+	glPopMatrix();
+
+	glPushMatrix();
+	glRotatef(270,0,1,0);
+	kacahotel();
+	glPopMatrix();
+	
+	
+	
+}
 
 
 
@@ -833,8 +937,8 @@ void display(void) {
 	glClearColor(0.0, 0.6, 0.8, 1);
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT); //clear the buffers
 	glLoadIdentity();
-	gluLookAt(camera_x, camera_y, camera_z, posisi_x, posisi_y, posisi_z, 0.0, 1.0, 0);
-    
+	gluLookAt(camera_x, camera_y, camera_z, posisi_x, posisi_y, posisi_z, 0.0, 1.0, 0);    
+	
 	//mobil
 	glPushMatrix();
 	glTranslatef(440,-13,280);
@@ -983,10 +1087,9 @@ void display(void) {
 	
 	//hotel
 	glPushMatrix();
-	glTranslatef(400,200, 0);	
-	glScalef(50, 150, 50);
-	glRotatef(45, 0, 1, 0);
-	rumah();
+	glTranslatef(400,130, 0);	
+	glScalef(70, 150, 70);
+	hotel();
 	glPopMatrix();
 
 	//rumah warga
@@ -1157,13 +1260,21 @@ static void kibor(int key, int x, int y) {
 void keyboard(unsigned char key, int x, int y) {
 	if (key == 'w') 
 	{
-		posisi_y = posisi_y - 15;
+		camera_z = camera_z - 15;
 	}
 	if (key == 's') 
 	{
-		posisi_y = posisi_y + 15;
+		camera_z = camera_z + 15;
 	}
-    if (key == 'm') 
+    if (key == 'a') 
+	{
+		camera_x = camera_x - 15;
+	}
+	if (key == 'd') 
+	{
+		camera_x = camera_x + 15;
+	}
+	if (key == 'm') 
 	{
 		posMobil = posMobil - 15;
 		if (posMobil <= -120){
