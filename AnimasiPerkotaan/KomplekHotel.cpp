@@ -34,6 +34,8 @@ static int posisi_z = 0;
 static int posisi_x = 0;
 static int posisi_y = 50;
 float rot = 0;
+int posMobil = 420;
+int posBebek = 	160;
 
 
 struct Gambar {
@@ -688,7 +690,137 @@ void pohon(){
 
 
 }
+void mobilElips(){
+    glPushMatrix();
+	glTranslatef(-3,18,0);
+	glScalef(12,8,12);
+	glutSolidSphere(1,20,10);
+	glPopMatrix();
 
+	glPushMatrix();
+	glTranslatef(0,15,0);
+	glScalef(30,5,12);
+	glutSolidSphere(1,20,10);
+	glPopMatrix();
+
+	glColor3f(0,0,0);
+	glPushMatrix();
+	glTranslatef(-15,12,9);
+	glScalef(1,1,1);
+	glutSolidTorus(2,3,40,20);
+	glPopMatrix();
+	
+	glPushMatrix();
+	glTranslatef(15,12,9);
+	glScalef(1,1,1);
+	glutSolidTorus(2,3,40,20);
+	glPopMatrix();
+
+	glColor3f(0,0,0);
+	glPushMatrix();
+	glTranslatef(-15,12,-9);
+	glScalef(1,1,1);
+	glutSolidTorus(2,3,40,20);
+	glPopMatrix();
+	
+	glPushMatrix();
+	glTranslatef(15,12,-9);
+	glScalef(1,1,1);
+	glutSolidTorus(2,3,40,20);
+	glPopMatrix();
+}
+void mobilKotak(){
+glPushMatrix();
+    //bagian atas
+    glColor3f(0.4, 0.2, 0.4);
+    glTranslatef(0,20,0);
+	glScalef(10,8,10);
+	glutSolidCube(2);
+	glPopMatrix();
+	//bagian bawah
+	glPushMatrix();
+	glTranslatef(0,15,0);
+	glScalef(25,5,10);
+	glutSolidCube(2);
+	glPopMatrix();
+	//kaca
+	glColor3f(1,0,1);
+	glPushMatrix();
+	glTranslatef(10,20,0);
+	glScalef(0.1,6,7);
+	glutSolidCube(2);
+	glPopMatrix();
+
+	glColor3f(1,0,1);
+	glPushMatrix();
+	glTranslatef(0,23,10);
+	glScalef(8,3,0.1);
+	glutSolidCube(2);
+	glPopMatrix();
+
+	glColor3f(1,0,1);
+	glPushMatrix();
+	glTranslatef(0,23,-10);
+	glScalef(8,3,0.1);
+	glutSolidCube(2);
+	glPopMatrix();
+
+	//lampu
+	glColor3f(0.8, 1.0, 1.0);
+	glPushMatrix();
+	glTranslatef(25,16,-6);
+	glScalef(0.1,6,7);
+	glutSolidSphere(0.3,20,20);
+	glPopMatrix();
+
+	glColor3f(0.8, 1.0, 1.0);
+	glPushMatrix();
+	glTranslatef(25,16, 6);
+	glScalef(0.1,6,7);
+	glutSolidSphere(0.3,20,20);
+	glPopMatrix();
+
+	//bemper
+	glColor3f(0,0,0);
+	glPushMatrix();
+	glTranslatef(25,11, 0);
+	glScalef(1,1,10);
+	glutSolidCube(2);
+	glPopMatrix();
+
+	//ban
+	glColor3f(1,0,1);
+	glPushMatrix();
+	glTranslatef(10,20,0);
+	glScalef(0.1,6,7);
+	glutSolidCube(2);
+	glPopMatrix();
+
+	glColor3f(0,0,0);	
+	glPushMatrix();
+	glTranslatef(-15,10,11);
+	glScalef(1.2,1.2,1.2);
+	glutSolidTorus(2,3,40,20);
+	glPopMatrix();
+	
+	glPushMatrix();
+	glTranslatef(15,10,11);
+	glScalef(1.2,1.2,1.2);
+	glutSolidTorus(2,3,40,20);
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(-15,10,-11);
+	glScalef(1.2,1.2,1.2);
+	glutSolidTorus(2,3,40,20);
+	glPopMatrix();
+	
+	glPushMatrix();
+	glTranslatef(15,10,-11);
+	glScalef(1.2,1.2,1.2);
+	glutSolidTorus(2,3,40,20);
+	glPopMatrix();
+}
 
 
 
@@ -703,6 +835,39 @@ void display(void) {
 	glLoadIdentity();
 	gluLookAt(camera_x, camera_y, camera_z, posisi_x, posisi_y, posisi_z, 0.0, 1.0, 0);
     
+	//mobil
+	glPushMatrix();
+	glTranslatef(440,-13,280);
+	glRotatef(90,0,1,0);
+	mobilElips();
+	glPopMatrix();
+	
+	glPushMatrix();
+	glTranslatef(360,-13,280);
+	glRotatef(270,0,1,0);
+	mobilKotak();
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(400,-13,280);
+	glRotatef(270,0,1,0);
+	mobilKotak();
+	glPopMatrix();
+
+	glPushMatrix();
+	glTranslatef(300,-13,330);	
+	mobilKotak();
+	glPopMatrix();
+	
+	//mobil jalan
+	glPushMatrix();
+	glTranslatef(posMobil,-13,180);	
+	glRotatef(180,0,1,0);	
+	mobilKotak();
+	glPopMatrix();
+
+	//pagar
+	glColor3f(0.4, 0.0, 0.2);
 	int k;
 	for (k=0; k<17; k++){
 	glPushMatrix();	
@@ -715,9 +880,7 @@ void display(void) {
 	glTranslatef(313+(10*k), -1, 230);
 	glScalef(10, 17, 4);
 	glutSolidCube(1);	
-	glPopMatrix();
-
-	
+	glPopMatrix();	
 	}
 
 	int l;
@@ -853,7 +1016,7 @@ void display(void) {
 	//bebek
 	glPushMatrix();
 	glColor3f(1, 0, 0);
-	glTranslatef(0, 0, 0);
+	glTranslatef(-40, 0, -20);
 	glScalef(0.5, 0.5, 0.5);
 	glRotatef(-30, 0, 1, 0);
 	drawBebek();
@@ -861,9 +1024,17 @@ void display(void) {
 
 	glPushMatrix();
 	glColor3f(1, 0, 0);
-	glTranslatef(50, 0, 0);
+	glTranslatef(0, 0, 0);
 	glScalef(0.5, 0.5, 0.5);
-	glRotatef(-30, 0, 1, 0);
+	glRotatef(posBebek, 0, 1, 0);
+	drawBebek();
+	glPopMatrix();
+
+	glPushMatrix();
+	glColor3f(1, 0, 0);
+	glTranslatef(30, 0, -20);
+	glScalef(0.5, 0.5, 0.5);
+	//glRotatef(, 0, 1, 0);
 	drawBebek();
 	glPopMatrix();
 
@@ -984,7 +1155,31 @@ static void kibor(int key, int x, int y) {
 }
 
 void keyboard(unsigned char key, int x, int y) {
-	
+	if (key == 'w') 
+	{
+		posisi_y = posisi_y - 15;
+	}
+	if (key == 's') 
+	{
+		posisi_y = posisi_y + 15;
+	}
+    if (key == 'm') 
+	{
+		posMobil = posMobil - 15;
+		if (posMobil <= -120){
+			posMobil = 420;
+		}
+	}
+
+	if (key == 'b') 
+	{
+		posBebek = posBebek + 10;
+		if (posBebek == 360){
+			posBebek = 0;
+		}
+	}
+
+
 }
 
 void reshape(int w, int h) {
