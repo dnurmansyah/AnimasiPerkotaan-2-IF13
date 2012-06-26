@@ -412,7 +412,61 @@ glEnd();
 
 glPopMatrix();
 }
+void rumah(){
 
+//tembok
+ glPushMatrix();
+ glColor3f(0,0,0.5);
+ glRotatef(50,0,1,0);
+ glutSolidCube(3);
+
+//pintu
+glPushMatrix();
+glColor3f(0.5,0.8,0);
+glTranslatef(-0.6,-1,1.46);
+glScalef(7,10,1);
+glutSolidCube(0.1);
+glPopMatrix();
+//jendela
+glPushMatrix();
+glColor3f(0.5,0.8,0);
+glTranslatef(0.5,0.1,1.46);
+glScalef(3,3,1);
+glutSolidCube(0.1);
+glPopMatrix();
+
+glPushMatrix();
+glColor3f(0.5,0.8,0);
+glTranslatef(0.9,0.1,1.46);
+glScalef(3,3,1);
+glutSolidCube(0.1);
+glPopMatrix();
+
+glPushMatrix();
+glColor3f(0.5,0.8,0);
+glTranslatef(0.9,-0.3,1.46);
+glScalef(3,3,1);
+glutSolidCube(0.1);
+glPopMatrix();
+
+glPushMatrix();
+glColor3f(0.5,0.8,0);
+glTranslatef(0.5,-0.3,1.46);
+glScalef(3,3,1);
+glutSolidCube(0.1);
+glPopMatrix();
+glPopMatrix();
+
+//atap
+ glPushMatrix();
+ glColor3f(0.8,0,0);
+ glRotatef(5,0,1,0);
+ glTranslatef(0,1.5,0);
+ glScalef(3,1.3,3);
+ glutSolidOctahedron();
+ glPopMatrix();
+
+}
 void pohon(){
 	glColor3f(0.8, 0.5, 0.2);
 	//<<<<<<<<<<<<<<<<<<<< Batang >>>>>>>>>>>>>>>>>>>>>>>
@@ -451,10 +505,6 @@ void pohon(){
 
 
 
-
-
-
-
 void display(void) {
 	glClearStencil(0); //clear the stencil buffer
 	glClearDepth(1.0f);
@@ -462,7 +512,7 @@ void display(void) {
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT | GL_STENCIL_BUFFER_BIT); //clear the buffers
 	glLoadIdentity();
 	gluLookAt(camera_x, camera_y, camera_z, posisi_x, posisi_y, posisi_z, 0.0, 1.0, 0);
-    
+	
 	//jalan
 	glColor3f(0.0f, 0.0f, 0.0f);
 	glPushMatrix();
@@ -493,7 +543,6 @@ void display(void) {
 	glDisable(GL_TEXTURE_2D);
 	glPopMatrix();
 
-
 	//<<<<<<<<<<<<<<<<<<<< pohon >>>>>>>>>>>>>>>>>>>>>>>
 	glPushMatrix();
 	glColor3f(1, 0, 0);
@@ -516,12 +565,58 @@ void display(void) {
 	pohon();
 	glPopMatrix();
 
-	
+	glPushMatrix();
+	glColor3f(1, 0, 0);
+	glTranslatef(0, 0, -85);
+	glScalef(10, 10, 10);	
+	pohon();
+	glPopMatrix();
+
+	glPushMatrix();
+	glColor3f(1, 0, 0);
+	glTranslatef(0, 0, 85);
+	glScalef(10, 10, 10);	
+	pohon();
+	glPopMatrix();
+
+	glPushMatrix();
+	glColor3f(1, 0, 0);
+	glTranslatef(125, 0, -85);
+	glScalef(10, 10, 10);	
+	pohon();
+	glPopMatrix();
+
+	glPushMatrix();
+	glColor3f(1, 0, 0);
+	glTranslatef(125, 0, 85);
+	glScalef(10, 10, 10);	
+	pohon();
+	glPopMatrix();
 
 	//<<<<<<<<<<<<<<<<<<<< end pohon >>>>>>>>>>>>>>>>>>>>>>>
 	
+	//rumah warga
+	int i;
+	for ( i=0;i<5;i++){	
+	glPushMatrix();
+	glScalef(10, 10, 10);	
+	glTranslatef(-10+(i*6), 1, 28);	
+	glRotatef(40, 0, 1, 0);
+	rumah();
+	glPopMatrix();
+	}
 
-
+	int j;
+	for ( j=0;j<5;j++){	
+	glPushMatrix();
+	glScalef(10, 10, 10);	
+	glTranslatef(-10+(j*6), 1, 34);	
+	glRotatef(40, 0, 1, 0);
+	rumah();
+	glPopMatrix();
+	}
+		
+	
 	
 	glPushMatrix();	
 	//glBindTexture(GL_TEXTURE_3D, texture[0]);
@@ -654,7 +749,7 @@ int main(int argc, char **argv) {
 	glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGBA | GLUT_STENCIL | GLUT_DEPTH); //add a stencil buffer to the window
 	glutInitWindowSize(800, 600);
 	glutInitWindowPosition(100, 100);
-	glutCreateWindow("Animasi Perkotaan");
+	glutCreateWindow("Sample Terain");
 	init();
 
 	glutDisplayFunc(display);
@@ -674,6 +769,8 @@ int main(int argc, char **argv) {
 	glutMainLoop();
 	return 0;
 }
+
+
 
 
 
